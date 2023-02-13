@@ -33,7 +33,7 @@ use Shopware\Core\System\SystemConfig\SystemConfigService;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
-class OverwritePriceCollector implements CartDataCollectorInterface, CartProcessorInterface
+class OverwritePriceCollector implements CartDataCollectorInterface
 {
 
     /**
@@ -73,8 +73,7 @@ class OverwritePriceCollector implements CartDataCollectorInterface, CartProcess
         $this->promotionItemBuilder          = $promotionItemBuilder;
         $this->promotionRepository           = $promotionRepository;
         $this->session = $session;
-
-    }//end __construct()
+    }
 
 
     public function collect(CartDataCollection $data, Cart $original, SalesChannelContext $context, CartBehavior $behavior): void
@@ -95,107 +94,15 @@ class OverwritePriceCollector implements CartDataCollectorInterface, CartProcess
                 }
             }
         }
-
-        /*
-            //--------Current User Email ID---------
-            $customerEmail = '';
-            $customer = $context->getCustomer();
-
-            if ($customer !== null) {
-            $customerEmail = $context->getCustomer()->getEmail();
-            }
-
-            //---------Get Configuration Percentage Data--------
-            $productPercentage = $this->systemConfigService->get('ICTECHNewsletterSubscriptionDiscount.config.percentageDiscount');
-
-            // get all product ids of current cart
-            $productIds = $original->getLineItems()->filterType(LineItem::PRODUCT_LINE_ITEM_TYPE)->getReferenceIds();
-
-            // remove all product ids which are already fetched from the database
-            $filtered = $this->filterAlreadyFetchedPrices($productIds, $data);
-
-            // Skip execution if there are no prices to be saved
-            if (empty($filtered)) {
-            return;
-            }
-
-            $i = 0;
-            $j = 0;
-            $incrementArray = [];
-            foreach ($filtered as $id) {
-            $key = $this->buildKey($id);
-
-            //----------Get All Newsletter Data--------
-            $criteria = new Criteria();
-            $criteria->addFilter(new EqualsFilter('email', $customerEmail));
-            $newsletterObject = $this->newsletterRecipientRepository->search($criteria, $context);
-            $allNewsLatterData = $newsletterObject->getTotal();
-
-            if ($allNewsLatterData >= 1) {
-                $customFields = $newsletterObject->first()->getcustomFields();
-                if (isset($customFields['newsletterDiscountApply']) && $customFields['newsletterDiscountApply'] == 1) {
-
-                } else {
-                    foreach ($original->getLineItems()->getElements() as $priceDefinition) {
-                        $totalPrice = $priceDefinition->getPriceDefinition()->getPrice();
-                        $discountPrice = ($totalPrice * $productPercentage) / 100;
-                        $afterDiscountPrice = $totalPrice - $discountPrice;
-                        $incrementArray[$i] = $afterDiscountPrice;
-                        $i++;
-                    }
-                }
-                $data->set($key, $incrementArray[$j]);
-            }
-
-            $j++;
-        }*/
-
-    }//end collect()
-
-
-    public function process(CartDataCollection $data, Cart $original, Cart $toCalculate, SalesChannelContext $context, CartBehavior $behavior): void
-    {
-        // $this->cartService->add($toCalculate, $lineItem, $context);
-        /*
-            // get all product line items
-            $products = $toCalculate->getLineItems()->filterType(LineItem::PRODUCT_LINE_ITEM_TYPE);
-
-            foreach ($products as $product) {
-            $key = $this->buildKey($product->getReferencedId());
-
-            // no overwritten price? continue with next product
-            if (!$data->has($key) || $data->get($key) === null) {
-                continue;
-            }
-
-            $newPrice = $data->get($key);
-
-            // build new price definition
-            $definition = new QuantityPriceDefinition(
-                $newPrice,
-                $product->getPrice()->getTaxRules(),
-                $product->getPrice()->getQuantity()
-            );
-
-            // build CalculatedPrice over calculator class for overwritten price
-            $calculated = $this->calculator->calculate($definition, $context);
-
-            // set new price into line item
-            $product->setPrice($calculated);
-            $product->setPriceDefinition($definition);
-        }*/
-
-    }//end process()
-
-
+    }
+    
     public function checkSubscribeUser($loginEmail, $context)
     {
         $criteria = new Criteria();
         $criteria->addFilter(new EqualsFilter('email', $loginEmail));
         $criteria->addFilter(new ContainsFilter('customFields', 'newsletterDiscountApply'));
         return $this->newsletterRecipientRepository->search($criteria, $context->getContext())->getTotal();
-
-    }//end checkSubscribeUser()
+    }
 
 
     private function filterAlreadyFetchedPrices(array $productIds, CartDataCollection $data): array
@@ -212,17 +119,11 @@ class OverwritePriceCollector implements CartDataCollectorInterface, CartProcess
 
             $filtered[] = $id;
         }
-
         return $filtered;
-
-    }//end filterAlreadyFetchedPrices()
-
+    }
 
     private function buildKey(string $id): string
     {
         return 'price-overwrite-'.$id;
-
-    }//end buildKey()
-
-
-}//end class
+    }
+}

@@ -71,8 +71,7 @@ class CheckoutCartPageSubscriber implements EventSubscriberInterface
         $this->newsletterRecipientRepository = $newsletterRecipientRepository;
         $this->newsletterRepository          = $newsletterRepository;
         $this->session          = $session;
-
-    }//end __construct()
+    }
 
 
     /**
@@ -87,8 +86,7 @@ class CheckoutCartPageSubscriber implements EventSubscriberInterface
             NewsletterRegisterEvent::class        => 'onNewsLetterRegister',
             CustomerLogoutEvent::class => 'onCustomerLogout'
         ];
-
-    }//end getSubscribedEvents()
+    }
 
 
     /**
@@ -99,7 +97,7 @@ class CheckoutCartPageSubscriber implements EventSubscriberInterface
     public function onCheckoutPageLoaded(PageLoadedEvent $event): void
     {
         $this->onSummaryPageData($event);
-    }//end onCheckoutPageLoaded()
+    }
 
 
     public function onNewsLetterRegister(NewsletterRegisterEvent $event):void
@@ -109,9 +107,7 @@ class CheckoutCartPageSubscriber implements EventSubscriberInterface
         $cookie_name  = 'newsletterCookie';
         $cookie_value = $email;
         setcookie($cookie_name, $cookie_value, (time() + (120)), '/');
-
-
-    }//end onNewsLetterRegister()
+    }
 
     public function onCustomerLogout(CustomerLogoutEvent $event)
     {
@@ -124,10 +120,8 @@ class CheckoutCartPageSubscriber implements EventSubscriberInterface
      */
     public function onCheckoutConfirmPageLoaded(PageLoadedEvent $event): void
     {
-
         $this->onSummaryPageData($event);
-
-    }//end onCheckoutConfirmPageLoaded()
+    }
 
 
     /**
@@ -156,11 +150,9 @@ class CheckoutCartPageSubscriber implements EventSubscriberInterface
             ];
             $this->newsletterRepository->upsert([$writeData], Context::createDefaultContext());
         }
-
         // End Newsletter Discount CustomFields Data
         $this->onSummaryPageData($event);
-
-    }//end onFinishPageLoaded()
+    }
 
 
     /**
@@ -212,8 +204,5 @@ class CheckoutCartPageSubscriber implements EventSubscriberInterface
                 'ICTECHNewsletterSubscriptionDiscountConfiguration' => $this->systemConfigService->get('ICTECHNewsletterSubscriptionDiscount.config', $event->getSalesChannelContext()->getSalesChannel()->getId()),
             ]
         );
-
-    }//end onSummaryPageData()
-
-
-}//end class
+    }
+}

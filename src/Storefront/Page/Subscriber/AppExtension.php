@@ -35,8 +35,7 @@ class AppExtension extends AbstractExtension
         $this->promotionDiscountRepository = $promotionDiscountRepository;
         $this->currencyRepository          = $currencyRepository;
         $this->newsletterRecipientRepository = $newsletterRecipientRepository;
-
-    }//end __construct()
+    }
 
 
     /**
@@ -48,8 +47,7 @@ class AppExtension extends AbstractExtension
             new TwigFunction('getPromoDiscount', [$this, 'getPromoDiscount']),
             new TwigFunction('checkSubscribeUser', [$this, 'checkSubscribeUser']),
         ];
-
-    }//end getFunctions()
+    }
 
 
     /**
@@ -68,14 +66,12 @@ class AppExtension extends AbstractExtension
                 return $this->getSymbol($context).$promotion->getValue();
             }
         }
-
         return null;
-
-    }//end getPromoDiscount()
+    }
 
     public function checkSubscribeUser($email)
     {
-        if($email){
+        if ($email) {
             $criteria = new Criteria();
             $criteria->addFilter(new EqualsFilter('email', $email));
             $criteria->addFilter(new ContainsFilter('customFields', 'newsletterDiscountApply'));

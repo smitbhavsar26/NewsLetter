@@ -29,8 +29,7 @@ class NewsletterSubscriptionDiscountController extends StorefrontController
 
     public function showExample(Request $request): JsonResponse
     {
-        $request->getSession()->set('newsletterClick','cart');
-        //setcookie('newsletterCookie','cart', (time() + (120)), '/');
+        $request->getSession()->set('newsletterClick', 'cart');
         return new JsonResponse(['timestamp' => (new \DateTime())->format(\DateTimeInterface::W3C)]);
     }
 }
