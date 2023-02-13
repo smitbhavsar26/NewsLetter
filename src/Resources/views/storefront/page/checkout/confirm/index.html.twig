@@ -1,0 +1,42 @@
+{% sw_extends '@Storefront/storefront/page/checkout/confirm/index.html.twig' %}
+
+{% block page_checkout_main_content %}
+    {{ parent() }}
+    {% set email = page.IctechNewsletterCustomerEmail %}
+    {% set cart = app.request.session.get('newsletterClick') %}
+    {% set checkLogin = context.customer %}
+    {% if checkLogin %}
+        {# Login User #}
+        <div class="modal fade" data-session="{{ cart }}" data-newsletterUser="{{ checkSubscribeUser(context.customer.email) }}" id="newsletter" tabindex="-1" aria-labelledby="newsletterModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="newsletterModalLabel">{{ config('newsletter.settings.promotionTitle') }}</h5>
+                        <button type="button"
+                                class="{{ modalCloseBtnClass }} close close-icon" {{ dataBsDismissAttr }}="modal"
+                        aria-label="Close">
+                        {% block smn_optimizely_news_letter_popup_modal_close_button_content %}
+                            {% if not feature('v6.5.0.0') %}
+                                <span
+                                    aria-hidden="true">{% sw_icon 'x' style { 'size': 'sm' } %}</span>
+                            {% endif %}
+                        {% endblock %}
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="cms-block">
+                            <div class="cms-element-form">
+                                {% sw_include '@Storefront/storefront/element/cms-element-form/form-types/newsletter-form.html.twig'
+                                    with {
+                                    action: 'frontend.form.newsletter.register.handle',
+                                    submitText: 'newsletter.formSubmit'
+                                } %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

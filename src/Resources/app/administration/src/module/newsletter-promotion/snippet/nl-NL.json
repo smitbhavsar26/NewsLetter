@@ -1,0 +1,23 @@
+{
+    "newsletter-promotion": {
+        "header" :"nieuwsbrief-promotie",
+        "general": {
+            "generalConfig": "Algemene Configuratie",
+            "activeSwitch": "Activeer Plugin",
+            "mainMenuItemGeneral": "Nieuwsbrief Promotie",
+            "descriptionTextModule": "Beheer hier de configuratie van NewsLetter Promotion"
+        },
+        "action": {
+            "buttonSaveText": "Sla",
+            "titleSaveSuccess": "Succes",
+            "messageSaveSuccess": "Details succesvol opgeslage"
+        },
+        "promotion" : {
+            "promotionTitle": "Nieuwsbrief pop-up titel",
+            "titleHint": "Gebruik \"%discount%\" om de promotiewaarde weer te geven.",
+            "description": "Nieuwsbrief pop-up beschrijving",
+            "descriptionHint": "Gebruik \"%discount%\" oom de promotiewaarde weer te geven.",
+            "promoCode": "Selecteer Promotie voor nieuwsbriefabonnement op winkelwagen/afrekenpagina"
+        }
+    }
+}

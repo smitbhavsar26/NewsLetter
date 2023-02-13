@@ -1,0 +1,141 @@
+{% block newsletter_prmotion_configuration %}
+    <sw-page class="newsletter-promotion-configuration">
+        {% block newsletter_prmotion_configuration_header %}
+            <template #smart-bar-header>
+                <h2>
+                    {{ $tc('sw-settings.index.title') }}
+                    <sw-icon name="small-arrow-medium-right" small></sw-icon>
+                    {{ $tc('newsletter-promotion.header') }}
+                </h2>
+            </template>
+        {% endblock %}
+
+        {% block newsletter_prmotion_configuration_actions %}
+            <template #smart-bar-actions>
+                {% block newsletter_prmotion_configuration_actions_save %}
+                    <sw-button-process v-model="isSaveSuccessful"
+                                       class="sw-settings-login-registration__save-action"
+                                       variant="primary"
+                                       :isLoading="isLoading"
+                                       :disabled="isLoading || !acl.can('newsletter.editor')"
+                                       @click="onSave">
+                        {{ $tc('global.default.save') }}
+                    </sw-button-process>
+                {% endblock %}
+            </template>
+        {% endblock %}
+
+        {% block newsletter_prmotion_configuration_content %}
+            <template #content>
+                {% block newsletter_prmotion_configuration_content_card %}
+                    <sw-card-view>
+                        {% block newsletter_prmotion_configuration_content_card_channel_config %}
+                            <sw-sales-channel-config
+                                v-model="config"
+                                ref="configComponent"
+                                domain="newsletter.settings"
+                            >
+                                {% block newsletter_prmotion_configuration_content_card_channel_config_sales_channel %}
+                                    <template #select="{ onInput, selectedSalesChannelId }">
+                                        <sw-card :title="$tc('global.entities.sales_channel', 2)">
+                                            {% block biller_configuration_content_card_channel_config_sales_channel_card_title %}
+                                                <sw-single-select v-model="selectedSalesChannelId"
+                                                                  labelProperty="translated.name"
+                                                                  valueProperty="id"
+                                                                  :isLoading="isLoading"
+                                                                  :options="salesChannels"
+                                                                  :disabled="!acl.can('newsletter.editor')"
+                                                                  @change="onInput">
+                                                </sw-single-select>
+                                            {% endblock %}
+                                        </sw-card>
+                                    </template>
+                                {% endblock %}
+
+                                {% block newsletter_prmotion_configuration_content_card_channel_config_cards %}
+                                <template #content="{ actualConfigData, allConfigs, selectedSalesChannelId }">
+                                    <div v-if="actualConfigData">
+                                        <sw-card :title="$tc('newsletter-promotion.general.generalConfig')">
+                                            <sw-container>
+
+                                                <div class="switch-field">
+                                                    <sw-inherit-wrapper v-model="actualConfigData['newsletter.settings.activeSwitch']"
+                                                                        :inheritedValue="selectedSalesChannelId === null ? null : allConfigs['null']['newsletter.settings.activeSwitch']"
+                                                                        :customInheritationCheckFunction="checkBoolFieldInheritance">
+                                                        <template #content="props">
+                                                            <sw-switch-field name="newsletter.settings.activeSwitch"
+                                                                             :mapInheritance="props"
+                                                                             :label="$tc('newsletter-promotion.general.activeSwitch')"
+                                                                             :disabled="props.isInherited || !acl.can('newsletter.editor')"
+                                                                             :value="props.currentValue"
+                                                                             @change="props.updateCurrentValue">
+                                                            </sw-switch-field>
+                                                        </template>
+                                                    </sw-inherit-wrapper>
+                                                </div>
+
+                                                <div class="text-field">
+                                                    <sw-inherit-wrapper v-model="actualConfigData['newsletter.settings.promotionTitle']"
+                                                                        :inheritedValue="selectedSalesChannelId === null ? null : allConfigs['null']['newsletter.settings.promotionTitle']"
+                                                                        :customInheritationCheckFunction="checkTextFieldInheritance">
+                                                        <template #content="props">
+                                                            <sw-text-field name="newsletter.settings.promotionTitle"
+                                                                           :mapInheritance="props"
+                                                                           :label="$tc('newsletter-promotion.promotion.promotionTitle')"
+                                                                           :helpText="$tc('newsletter-promotion.promotion.titleHint')"
+                                                                           :disabled="props.isInherited || !acl.can('newsletter.editor')"
+                                                                           :value="props.currentValue"
+                                                                           @change="props.updateCurrentValue">
+                                                            </sw-text-field>
+                                                        </template>
+                                                    </sw-inherit-wrapper>
+                                                </div>
+
+                                                <div class="textarea-field">
+                                                    <sw-inherit-wrapper v-model="actualConfigData['newsletter.settings.description']"
+                                                                        :inheritedValue="selectedSalesChannelId === null ? null : allConfigs['null']['newsletter.settings.description']"
+                                                                        :customInheritationCheckFunction="checkTextFieldInheritance">
+                                                        <template #content="props">
+                                                            <sw-textarea-field name="newsletter.settings.description"
+                                                                           :mapInheritance="props"
+                                                                           :label="$tc('newsletter-promotion.promotion.description')"
+                                                                           :helpText="$tc('newsletter-promotion.promotion.descriptionHint')"
+                                                                           :disabled="props.isInherited || !acl.can('newsletter.editor')"
+                                                                           :value="props.currentValue"
+                                                                           @change="props.updateCurrentValue">
+                                                            </sw-textarea-field>
+                                                        </template>
+                                                    </sw-inherit-wrapper>
+                                                </div>
+
+                                                <div class="text-field">
+                                                    <sw-inherit-wrapper v-model="actualConfigData['newsletter.settings.promoCode']"
+                                                                        :inheritedValue="selectedSalesChannelId === null ? null : allConfigs['null']['newsletter.settings.promoCode']"
+                                                                        :customInheritationCheckFunction="checkTextFieldInheritance">
+                                                        <template #content="props">
+                                                            <sw-single-select name="newsletter.settings.promoCode"
+                                                                              :options="promoCodeOptions"
+                                                                              :label="$tc('newsletter-promotion.promotion.promoCode')"
+                                                                              labelProperty="name"
+                                                                              valueProperty="id"
+                                                                              :isInherited="props.isInherited"
+                                                                              :value="props.currentValue"
+                                                                              @change="props.updateCurrentValue"
+                                                                              :disabled="props.isInherited || !acl.can('newsletter.editor')">
+                                                            </sw-single-select>
+                                                        </template>
+                                                    </sw-inherit-wrapper>
+                                                </div>
+                                            </sw-container>
+                                        </sw-card>
+                                    </div>
+                                </template>
+                                {% endblock %}
+                            </sw-sales-channel-config>
+                        {% endblock %}
+                    </sw-card-view>
+                {% endblock %}
+            </template>
+        {% endblock %}
+    </sw-page>
+{% endblock %}

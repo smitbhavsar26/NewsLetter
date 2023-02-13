@@ -1,0 +1,44 @@
+{
+    "name": "ictech/newsletter-subscription-discount",
+    "description": "Newsletter-Abonnement-Rabatt auf der Warenkorb/Checkout Seite.",
+    "version": "1.1.4",
+    "license": "proprietary",
+    "type": "shopware-platform-plugin",
+    "authors": [
+        {
+            "name": "Newsletter Subscription discount on Cart/Checkout page.",
+            "homepage": "https://www.icreativetechnologies.com"
+        }
+    ],
+    "require": {
+        "shopware/core": "^6.4",
+        "shopware/storefront": "^6.4",
+        "shopware/administration": "^6.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "ICTECHNewsletterSubscriptionDiscount\\": "src/"
+        }
+    },
+    "extra": {
+        "shopware-plugin-class": "ICTECHNewsletterSubscriptionDiscount\\ICTECHNewsletterSubscriptionDiscount",
+        "copyright": "icreativetechnologies",
+        "plugin-icon": "src/Resources/plugin.png",
+        "label": {
+            "de-DE": "Newsletter-Abonnement-Rabatt auf der Warenkorb/Checkout Seite.",
+            "en-GB": "Newsletter Subscription discount on Cart/Checkout page."
+        },
+        "description": {
+            "de-DE": "Dieses Plugin hilft, Newsletter-Abonnenten und Konversionsraten zu erhöhen, indem es einen Newsletter-Abonnement-Rabatt auf der Warenkorb- und Checkout-Seite anbietet.",
+            "en-GB": "This plugin helps increase newsletter subscribers and conversion rates by offering on newsletter Subscription discount on Cart and Checkout page."
+        },
+        "manufacturerLink": {
+            "de-DE": "https://www.icreativetechnologies.com",
+            "en-GB": "https://www.icreativetechnologies.com/"
+        },
+        "supportLink": {
+            "de-DE": "https://www.icreativetechnologies.com/",
+            "en-GB": "https://www.icreativetechnologies.com/"
+        }
+    }
+}

@@ -1,0 +1,18 @@
+{% sw_extends '@Storefront/storefront/element/cms-element-form/form-components/cms-element-form-input.html.twig' %}
+
+{% block cms_element_form_input_input %}
+    <input name="{{ fieldName }}"
+           type="{{ type ?? 'text'}}"
+           readonly
+           id="form-{{ fieldName }}"
+           value="{{ value?value:data.get( fieldname ) }}"
+           placeholder="{{ placeholder|trans }}"
+           {% if required %}required="required"{% endif %}
+          class="form-control{% if formViolations.getViolations( '/' ~ fieldName ) %} is-invalid{% endif %}"/>
+
+    {% if formViolations.getViolations( '/' ~ fieldName ) is not empty %}
+        {% sw_include '@Storefront/storefront/utilities/form-violation.html.twig' with {
+            violationPath: ('/' ~ fieldName)
+        } %}
+    {% endif %}
+{% endblock %}

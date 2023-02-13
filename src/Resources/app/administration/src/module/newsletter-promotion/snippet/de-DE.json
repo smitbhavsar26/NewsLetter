@@ -1,0 +1,23 @@
+{
+    "newsletter-promotion": {
+        "header" :"Newsletter-Promotion",
+        "general": {
+            "generalConfig": "Allgemeine Konfig",
+            "mainMenuItemGeneral": "Newsletter-Aktion",
+            "activeSwitch": "Plugin aktivieren",
+            "descriptionTextModule": "Verwalten Sie hier die Konfiguration der Newsletter-Aktion"
+        },
+        "action": {
+            "buttonSaveText": "Speichern",
+            "titleSaveSuccess": "Erfolgreich",
+            "messageSaveSuccess": "Details erfolgreich gespeichert"
+        },
+        "promotion" : {
+            "promotionTitle": "Newsletter-Popup-Titel",
+            "titleHint": "Benutzer \"%discount%\" um den Aktionswert anzuzeigen.",
+            "description": "Newsletter-Popup-Beschreibung",
+            "descriptionHint": "Benutzer \"%discount%\" um den Aktionswert anzuzeigen.",
+            "promoCode": "Wählen Sie Aktion für das Newsletter-Abonnement auf der Warenkorb-/Kasse-Seite"
+        }
+    }
+}

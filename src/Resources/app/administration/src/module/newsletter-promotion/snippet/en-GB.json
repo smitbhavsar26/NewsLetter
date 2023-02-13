@@ -1,0 +1,23 @@
+{
+    "newsletter-promotion": {
+        "header" :"NewsLetter Promotion",
+        "general": {
+            "generalConfig": "General Config",
+            "activeSwitch": "Activate Plugin",
+            "mainMenuItemGeneral": "NewsLetter Promotion",
+            "descriptionTextModule": "Manage NewsLetter Promotion configuration here"
+        },
+        "action": {
+            "buttonSaveText": "Save",
+            "titleSaveSuccess": "Success",
+            "messageSaveSuccess": "Details saved successfully"
+        },
+        "promotion" : {
+            "promotionTitle": "Newsletter pop-up title",
+            "titleHint": "Use \"%discount%\"  to display the promotion value.",
+            "description": "Newsletter pop-up description",
+            "descriptionHint": "Use \"%discount%\" to display the promotion value.",
+            "promoCode": "Select Promotion for Newsletter Subscription on Cart/Checkout page"
+        }
+    }
+}

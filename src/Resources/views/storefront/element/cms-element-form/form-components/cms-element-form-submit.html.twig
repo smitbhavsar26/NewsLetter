@@ -1,0 +1,9 @@
+{# file to extend #}
+{% sw_extends '@Storefront/storefront/element/cms-element-form/form-components/cms-element-form-submit.html.twig' %}
+
+{% block cms_form_submit %}
+    <input type="hidden" class="newsletter-subscription" value="{{ path('frontend.newsletter.subscription') }}" data-token="{{ sw_csrf('frontend.newsletter.subscription', {"mode": "token"})}}">
+    <button type="submit" id="ajax-button" class="btn btn-primary {{ floatEndClass }}">
+        {{ "newsletterFormInfo.submitBtn"|trans }}
+    </button>
+{% endblock %}
