@@ -73,7 +73,6 @@ class CheckoutCartPageSubscriber implements EventSubscriberInterface
         $this->session          = $session;
     }
 
-
     /**
      * @return string[]
      */
@@ -97,12 +96,11 @@ class CheckoutCartPageSubscriber implements EventSubscriberInterface
     public function onCheckoutPageLoaded(PageLoadedEvent $event): void
     {
         $this->onSummaryPageData($event);
-    }
+    }//end onCheckoutPageLoaded()
 
 
     public function onNewsLetterRegister(NewsletterRegisterEvent $event):void
     {
-
         $email        = $event->getNewsletterRecipient()->getEmail();
         $cookie_name  = 'newsletterCookie';
         $cookie_value = $email;
@@ -120,6 +118,7 @@ class CheckoutCartPageSubscriber implements EventSubscriberInterface
      */
     public function onCheckoutConfirmPageLoaded(PageLoadedEvent $event): void
     {
+
         $this->onSummaryPageData($event);
     }
 
@@ -150,6 +149,7 @@ class CheckoutCartPageSubscriber implements EventSubscriberInterface
             ];
             $this->newsletterRepository->upsert([$writeData], Context::createDefaultContext());
         }
+
         // End Newsletter Discount CustomFields Data
         $this->onSummaryPageData($event);
     }

@@ -37,7 +37,6 @@ class AppExtension extends AbstractExtension
         $this->newsletterRecipientRepository = $newsletterRecipientRepository;
     }
 
-
     /**
      * @return TwigFunction[]
      */
@@ -48,7 +47,6 @@ class AppExtension extends AbstractExtension
             new TwigFunction('checkSubscribeUser', [$this, 'checkSubscribeUser']),
         ];
     }
-
 
     /**
      * @param  $promoId
@@ -66,6 +64,7 @@ class AppExtension extends AbstractExtension
                 return $this->getSymbol($context).$promotion->getValue();
             }
         }
+
         return null;
     }
 

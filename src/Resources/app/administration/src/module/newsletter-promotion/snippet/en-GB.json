@@ -14,9 +14,9 @@
         },
         "promotion" : {
             "promotionTitle": "Newsletter pop-up title",
-            "titleHint": "Use \"%discount%\"  to display the promotion value.",
+            "titleHint": "Use <a href='https://prnt.sc/1AbIOwfOCndP'>\"%discount%\"</a>  to display the promotion value.",
             "description": "Newsletter pop-up description",
-            "descriptionHint": "Use \"%discount%\" to display the promotion value.",
+            "descriptionHint": "Use <a href='https://prnt.sc/1AbIOwfOCndP'>\"%discount%\"</a> to display the promotion value.",
             "promoCode": "Select Promotion for Newsletter Subscription on Cart/Checkout page"
         }
     }
