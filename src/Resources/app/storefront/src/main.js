@@ -6,5 +6,4 @@ window.onload = () => {
     } else {
         $('#newsletter').modal('show');
     }
-
 }

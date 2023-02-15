@@ -1,5 +1,4 @@
 import "./page/newsletter-promotion-configuration";
-import './components/newsletter-configuration-discount-icon';
 
 import deDE from './snippet/de-DE.json';
 import enGB from './snippet/en-GB.json';

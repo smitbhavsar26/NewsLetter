@@ -2,15 +2,12 @@
 
 <container xmlns="http://symfony.com/schema/dic/services"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+           xsi:schemaLocation="http://symfony.com/schema/dic/services https://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
 
         <service
             id="ICTECHNewsletterSubscriptionDiscount\Subscriber\Storefront\Page\Checkout\Cart\CheckoutCartPageSubscriber">
-            <argument type="service" id="Shopware\Core\Checkout\Cart\SalesChannel\CartService"/>
-            <argument type="service" id="Shopware\Core\Checkout\Promotion\Cart\PromotionItemBuilder"/>
-            <argument type="service" id="Symfony\Contracts\EventDispatcher\EventDispatcherInterface"/>
             <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
             <argument type="service" id="salutation.repository"/>
             <argument type="service" id="sales_channel.newsletter_recipient.repository"/>
@@ -35,15 +32,11 @@
         </service>
 
         <service id="ICTECHNewsletterSubscriptionDiscount\Core\Checkout\Cart\OverwritePriceCollector">
-            <argument type="service" id="Shopware\Core\Checkout\Cart\Price\QuantityPriceCalculator"/>
             <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
             <argument type="service" id="newsletter_recipient.repository"/>
-            <argument type="service" id="Shopware\Core\Checkout\Cart\SalesChannel\CartService"/>
             <argument type="service" id="Shopware\Core\Checkout\Promotion\Cart\PromotionItemBuilder"/>
             <argument type="service" id="promotion.repository"/>
             <argument type="service" id="session"/>
-            <!-- after product collector/processor -->
-            <tag name="shopware.cart.processor" priority="5000"/>
             <tag name="shopware.cart.collector" priority="5000"/>
         </service>
 

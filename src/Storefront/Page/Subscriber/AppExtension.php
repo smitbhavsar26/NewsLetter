@@ -19,13 +19,14 @@ class AppExtension extends AbstractExtension
      * @var EntityRepositoryInterface
      */
     private $promotionDiscountRepository;
-
     /**
      * @var EntityRepositoryInterface
      */
     private $currencyRepository;
-
-    private EntityRepositoryInterface $newsletterRecipientRepository;
+    /**
+     * @var EntityRepositoryInterface
+     */
+    private $newsletterRecipientRepository;
 
     public function __construct(
         EntityRepositoryInterface $promotionDiscountRepository,
@@ -40,7 +41,7 @@ class AppExtension extends AbstractExtension
     /**
      * @return TwigFunction[]
      */
-    public function getFunctions()
+    public function getFunctions(): array
     {
         return [
             new TwigFunction('getPromoDiscount', [$this, 'getPromoDiscount']),
@@ -48,11 +49,7 @@ class AppExtension extends AbstractExtension
         ];
     }
 
-    /**
-     * @param  $promoId
-     * @return null
-     */
-    public function getPromoDiscount($context, $promoId)
+    public function getPromoDiscount($context, $promoId): ?string
     {
         $promotion = $this->getPromotion($promoId, Context::createDefaultContext());
         if ($promotion) {
@@ -68,7 +65,7 @@ class AppExtension extends AbstractExtension
         return null;
     }
 
-    public function checkSubscribeUser($email)
+    public function checkSubscribeUser($email): ?int
     {
         if ($email) {
             $criteria = new Criteria();
@@ -79,14 +76,12 @@ class AppExtension extends AbstractExtension
         return null;
     }
 
-
     public function getPromotion($promoId, $context)
     {
         $criteria = new Criteria();
         $criteria->addFilter(new EqualsFilter('promotionId', $promoId));
         return $this->promotionDiscountRepository->search($criteria, $context)->first();
-    }//end getPromotion()
-
+    }
 
     public function getSymbol($context)
     {
