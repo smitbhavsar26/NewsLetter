@@ -41,5 +41,14 @@
             "de-DE": "https://www.icreativetechnologies.com/",
             "en-GB": "https://www.icreativetechnologies.com/"
         }
-    }
+    },
+
+    "scripts": {
+        "post-install-cmd": [
+            "[ ! -f vendor/bin/phpcs ] || vendor/bin/phpcs --config-set installed_paths vendor/phpcompatibility/php-compatibility"
+        ],
+        "post-update-cmd": [
+            "[ ! -f vendor/bin/phpcs ] || vendor/bin/phpcs --config-set installed_paths vendor/phpcompatibility/php-compatibility"
+        ]
+  }
 }
