@@ -4,16 +4,16 @@
     {% set email = page.IctechNewsletterCustomerEmail %}
     {% set cart = app.request.session.get('newsletterClick') %}
     {% set checkLogin = context.customer %}
-    {% set activeSwitch = config('newsletter.settings.activeSwitch') %}
-    {% if activateSwitch == true %}
+
+    {% if config('newsletter.settings.activeSwitch') == true %}
     {% if checkLogin %}
         {# Login User #}
-        <div class="modal fade" data-session="{{ cart }}" data-newsletterUser="{{ checkSubscribeUser(context.customer.email) }}" id="newsletter" tabindex="-1" aria-labelledby="newsletterModalLabel"
+        <div class="modal fade" data-login="Login" data-session="{{ cart }}" data-newsletterUser="{{ checkSubscribeUser(context.customer.email) }}" id="newsletter" tabindex="-1" aria-labelledby="newsletterModalLabel"
              aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="newsletterModalLabel">{{ config('newsletter.settings.promotionTitle') }}</h5>
+                        <h5 class="modal-title" id="newsletterModalLabel">{{ config('newsletter.settings.promotionTitle')|replace({'%discount%': getPromoDiscount(context,config("newsletter.settings.promoCode"))})|raw }}</h5>
                             <button style="margin-left: 0" type="button"
                                     class="{{ modalCloseBtnClass }} close" {{ dataBsDismissAttr }}="modal"aria-label="Close">
                                 {% block smn_optimizely_news_letter_popup_modal_close_button_content %}
@@ -39,11 +39,11 @@
         </div>
         {% else %}
             {# Guest User #}
-            <div class="modal fade" data-session="{{ cart }}" id="newsletter" tabindex="-1" aria-labelledby="newsletterModalLabel" aria-hidden="true">
+            <div class="modal fade" data-login="Guest" data-session="{{ cart }}" id="newsletter" tabindex="-1" aria-labelledby="newsletterModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="newsletterModalLabel">{{ config('newsletter.settings.promotionTitle') }}</h5>
+                            <h5 class="modal-title" id="newsletterModalLabel">{{ config('newsletter.settings.promotionTitle')|replace({'%discount%': getPromoDiscount(context,config("newsletter.settings.promoCode"))})|raw }}</h5>
                             <button type="button"
                                     class="{{ modalCloseBtnClass }} close close-icon" {{ dataBsDismissAttr }}="modal"
                             aria-label="Close">

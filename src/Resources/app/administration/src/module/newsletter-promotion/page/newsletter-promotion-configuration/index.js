@@ -63,6 +63,37 @@ Component.register('newsletter-promotion-configuration',{
         },
 
         onSave(){
+            const selectedSalesChannelId = this.$refs.configComponent.selectedSalesChannelId;
+            if (selectedSalesChannelId == null) {
+                if (!this.$refs.configComponent.allConfigs[selectedSalesChannelId]['newsletter.settings.promotionTitle']) {
+                    this.createNotificationError({
+                        title: this.$tc('global.default.error'),
+                        message: this.$tc(
+                            'newsletter-promotion.save.errorTitleSalesChannel'
+                        )
+                    });
+
+                    return;
+                } else if (!this.$refs.configComponent.allConfigs[selectedSalesChannelId]['newsletter.settings.description']) {
+                    this.createNotificationError({
+                        title: this.$tc('global.default.error'),
+                        message: this.$tc(
+                            'newsletter-promotion.save.errorTitleDescription'
+                        )
+                    });
+
+                    return;
+                } else if (!this.$refs.configComponent.allConfigs[selectedSalesChannelId]['newsletter.settings.promoCode']) {
+                    this.createNotificationError({
+                        title: this.$tc('global.default.error'),
+                        message: this.$tc(
+                            'newsletter-promotion.save.errorTitlePromoCode'
+                        )
+                    });
+
+                    return;
+                }
+            }
             this.isLoading = true;
             this.$refs.configComponent.save().then(() => {
                 this.isSaveSuccessful = true;

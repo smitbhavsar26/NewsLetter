@@ -80,6 +80,7 @@
                                                                         :customInheritationCheckFunction="checkTextFieldInheritance">
                                                         <template #content="props">
                                                             <sw-text-field name="newsletter.settings.promotionTitle"
+                                                                           validation="required"
                                                                            :mapInheritance="props"
                                                                            :label="$tc('newsletter-promotion.promotion.promotionTitle')"
                                                                            :helpText="$tc('newsletter-promotion.promotion.titleHint')"
@@ -97,6 +98,7 @@
                                                                         :customInheritationCheckFunction="checkTextFieldInheritance">
                                                         <template #content="props">
                                                             <sw-textarea-field name="newsletter.settings.description"
+                                                                               validation="required"
                                                                            :mapInheritance="props"
                                                                            :label="$tc('newsletter-promotion.promotion.description')"
                                                                            :helpText="$tc('newsletter-promotion.promotion.descriptionHint')"
@@ -111,17 +113,17 @@
                                                 <div class="text-field">
                                                     <sw-inherit-wrapper v-model="actualConfigData['newsletter.settings.promoCode']"
                                                                         :inheritedValue="selectedSalesChannelId === null ? null : allConfigs['null']['newsletter.settings.promoCode']"
-                                                                        :customInheritationCheckFunction="checkTextFieldInheritance">
+                                                                        :customInheritationCheckFunction="checkTextFieldInheritance"
+                                                                        :label="$tc('newsletter-promotion.promotion.promoCode')">
                                                         <template #content="props">
                                                             <sw-single-select name="newsletter.settings.promoCode"
-                                                                              :options="promoCodeOptions"
-                                                                              :label="$tc('newsletter-promotion.promotion.promoCode')"
                                                                               labelProperty="name"
                                                                               valueProperty="id"
+                                                                              :options="promoCodeOptions"
                                                                               :isInherited="props.isInherited"
+                                                                              :disabled="props.isInherited || !acl.can('newsletter.editor')"
                                                                               :value="props.currentValue"
-                                                                              @change="props.updateCurrentValue"
-                                                                              :disabled="props.isInherited || !acl.can('newsletter.editor')">
+                                                                              @change="props.updateCurrentValue">
                                                             </sw-single-select>
                                                         </template>
                                                     </sw-inherit-wrapper>

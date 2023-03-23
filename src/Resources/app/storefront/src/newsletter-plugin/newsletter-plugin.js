@@ -5,8 +5,13 @@ export default class AjaxPlugin extends Plugin {
     init()
     {
         this._client = new HttpClient();
-        this.save =  document.querySelector('#ajax-button');
-        this.requestUrl = document.querySelector('.newsletter-subscription').value;
+        if(document.querySelector("#ajax-button") != null){
+            this.save =  document.querySelector('#ajax-button');
+        }
+
+        if(document.querySelector('.newsletter-subscription') != null){
+            this.requestUrl = document.querySelector('.newsletter-subscription').value;
+        }
 
         this.button = this.el.children['ajax-button'];
         this.textdiv = this.el.children['ajax-display'];
@@ -16,14 +21,16 @@ export default class AjaxPlugin extends Plugin {
 
     _registerEvents()
     {
-        this.save.addEventListener('click', (event) => {
-            if (document.getElementById("form-privacy-opt-in-").checked === true) {
-                setTimeout(function () {
-                    window.location.reload();
-                }, 5000);
-                this._client.post(this.requestUrl, "", this._setContent.bind(this));
-            }
-        });
+        if(this.save){
+            this.save.addEventListener('click', (event) => {
+                if (document.getElementById("form-privacy-opt-in-").checked === true) {
+                    setTimeout(function () {
+                        window.location.reload();
+                    }, 5000);
+                    this._client.post(this.requestUrl, "", this._setContent.bind(this));
+                }
+            });
+        }
     }
     _setContent(data)
     {

@@ -7,7 +7,7 @@
     <services>
 
         <service
-            id="ICTECHNewsletterSubscriptionDiscount\Subscriber\Storefront\Page\Checkout\Cart\CheckoutCartPageSubscriber">
+            id="ICTECHNewsletterDiscount\Subscriber\Storefront\Page\Checkout\Cart\CheckoutCartPageSubscriber">
             <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
             <argument type="service" id="salutation.repository"/>
             <argument type="service" id="sales_channel.newsletter_recipient.repository"/>
@@ -17,21 +17,21 @@
         </service>
 
         <service
-            id="ICTECHNewsletterSubscriptionDiscount\Storefront\Controller\NewsletterSubscriptionDiscountController"
+            id="ICTECHNewsletterDiscount\Storefront\Controller\NewsletterSubscriptionDiscountController"
             public="true">
             <call method="setContainer">
                 <argument type="service" id="service_container"/>
             </call>
         </service>
 
-        <service id="ICTECHNewsletterSubscriptionDiscount\Storefront\Page\Subscriber\AppExtension">
+        <service id="ICTECHNewsletterDiscount\Storefront\Page\Subscriber\AppExtension">
             <argument type="service" id="promotion_discount.repository"/>
             <argument type="service" id="currency.repository"/>
             <argument type="service" id="newsletter_recipient.repository"/>
             <tag name="twig.extension"/>
         </service>
 
-        <service id="ICTECHNewsletterSubscriptionDiscount\Core\Checkout\Cart\OverwritePriceCollector">
+        <service id="ICTECHNewsletterDiscount\Core\Checkout\Cart\OverwritePriceCollector">
             <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
             <argument type="service" id="newsletter_recipient.repository"/>
             <argument type="service" id="Shopware\Core\Checkout\Promotion\Cart\PromotionItemBuilder"/>

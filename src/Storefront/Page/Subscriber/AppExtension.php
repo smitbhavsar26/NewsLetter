@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ICTECHNewsletterSubscriptionDiscount\Storefront\Page\Subscriber;
+namespace ICTECHNewsletterDiscount\Storefront\Page\Subscriber;
 
 use Shopware\Core\Framework\Context;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityRepositoryInterface;

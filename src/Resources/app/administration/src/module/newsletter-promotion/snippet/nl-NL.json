@@ -12,6 +12,13 @@
             "titleSaveSuccess": "Succes",
             "messageSaveSuccess": "Details succesvol opgeslage"
         },
+        "save": {
+            "errorTitle" : "Configuratie kan niet worden opgeslagen",
+            "errorTitleSalesChannel" : "Vul de titel van de pop-up van de nieuwsbrief in",
+            "errorTitleDescription" : "Vul de nieuwsbriefbeschrijving in",
+            "errorTitlePromoCode" : "Selecteer Nieuwsbrief PromoCode",
+            "success" : "Configuratie wordt opgeslagen"
+        },
         "promotion" : {
             "promotionTitle": "Nieuwsbrief pop-up titel",
             "titleHint": "Gebruik \"%discount%\" om de promotiewaarde weer te geven.",

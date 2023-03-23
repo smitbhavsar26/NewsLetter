@@ -2,7 +2,7 @@
     "newsletter-promotion": {
         "header" :"Newsletter-Promotion",
         "general": {
-            "generalConfig": "Allgemeine Konfig",
+            "generalConfig": "Allgemeine Konfiguration",
             "mainMenuItemGeneral": "Newsletter-Aktion",
             "activeSwitch": "Plugin aktivieren",
             "descriptionTextModule": "Verwalten Sie hier die Konfiguration der Newsletter-Aktion"
@@ -11,6 +11,13 @@
             "buttonSaveText": "Speichern",
             "titleSaveSuccess": "Erfolgreich",
             "messageSaveSuccess": "Details erfolgreich gespeichert"
+        },
+        "save": {
+            "errorTitle" : "Konfiguration konnte nicht gespeichert werden",
+            "errorTitleSalesChannel" : "Bitte füllen Sie den Popup-Titel des Newsletters aus",
+            "errorTitleDescription" : "Bitte füllen Sie die Newsletter-Beschreibung aus",
+            "errorTitlePromoCode" : "Bitte Newsletter PromoCode auswählen",
+            "success" : "Konfiguration wird gespeichert"
         },
         "promotion" : {
             "promotionTitle": "Newsletter-Popup-Titel",

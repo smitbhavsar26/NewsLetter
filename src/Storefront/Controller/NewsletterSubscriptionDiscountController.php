@@ -4,11 +4,11 @@
  * icreativetechnologies
  *
  * @category  icreativetechnologies
- * @package   Shopware\Plugins\ICTECHNewsletterSubscriptionDiscount
+ * @package   Shopware\Plugins\ICTECHNewsletterDiscount
  * @copyright (c) 2022 icreativetechnologies
  */
 
-namespace ICTECHNewsletterSubscriptionDiscount\Storefront\Controller;
+namespace ICTECHNewsletterDiscount\Storefront\Controller;
 
 use Shopware\Core\Framework\Routing\Annotation\RouteScope;
 use Shopware\Storefront\Controller\StorefrontController;

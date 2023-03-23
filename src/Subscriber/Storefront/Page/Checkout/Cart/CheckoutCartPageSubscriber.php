@@ -3,11 +3,11 @@
  * icreativetechnologies
  *
  * @category  icreativetechnologies
- * @package   Shopware\Plugins\ICTECHNewsletterSubscriptionDiscount
+ * @package   Shopware\Plugins\ICTECHNewsletterDiscount
  * @copyright 2023 Squiz Pty Ltd (ABN 77 084 670 600)
  */
 
-namespace ICTECHNewsletterSubscriptionDiscount\Subscriber\Storefront\Page\Checkout\Cart;
+namespace ICTECHNewsletterDiscount\Subscriber\Storefront\Page\Checkout\Cart;
 
 use Shopware\Core\Checkout\Customer\Event\CustomerLogoutEvent;
 use Shopware\Core\Framework\Context;
@@ -167,7 +167,7 @@ class CheckoutCartPageSubscriber implements EventSubscriberInterface
                 'IctechNewsletterCustomerEmail'                     => $customerEmail,
                 'IctechAllNewsLatterData'                           => $allNewsLatterData,
                 'newsletterStatus'                                  => $status,
-                'ICTECHNewsletterSubscriptionDiscountConfiguration' => $this->systemConfigService->get('ICTECHNewsletterSubscriptionDiscount.config', $event->getSalesChannelContext()->getSalesChannel()->getId()),
+                'ICTECHNewsletterDiscountConfiguration' => $this->systemConfigService->get('ICTECHNewsletterDiscount.config', $event->getSalesChannelContext()->getSalesChannel()->getId()),
             ]
         );
     }

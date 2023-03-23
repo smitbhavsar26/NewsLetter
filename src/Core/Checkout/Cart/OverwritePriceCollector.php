@@ -4,11 +4,11 @@
  * icreativetechnologies
  *
  * @category  icreativetechnologies
- * @package   Shopware\Plugins\ICTECHNewsletterSubscriptionDiscount
+ * @package   Shopware\Plugins\ICTECHNewsletterDiscount
  * @copyright (c) 2022 icreativetechnologies
  */
 
-namespace ICTECHNewsletterSubscriptionDiscount\Core\Checkout\Cart;
+namespace ICTECHNewsletterDiscount\Core\Checkout\Cart;
 
 use Shopware\Core\Checkout\Cart\Cart;
 use Shopware\Core\Checkout\Cart\CartBehavior;
