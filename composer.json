@@ -40,7 +40,12 @@
         "supportLink": {
             "de-DE": "https://www.icreativetechnologies.com/",
             "en-GB": "https://www.icreativetechnologies.com/"
-        }
+        },
+        "phpstan": {
+          "includes": [
+              "extension.neon"
+          ]
+      }
     },
 
     "scripts": {
