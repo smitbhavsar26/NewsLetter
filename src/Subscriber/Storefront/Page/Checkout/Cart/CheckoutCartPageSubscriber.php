@@ -11,10 +11,10 @@ namespace ICTECHNewsletterDiscount\Subscriber\Storefront\Page\Checkout\Cart;
 
 use Shopware\Core\Checkout\Customer\Event\CustomerLogoutEvent;
 use Shopware\Core\Framework\Context;
-use Shopware\Core\Framework\DataAbstractionLayer\EntityRepositoryInterface;
+use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Filter\EqualsFilter;
-use Shopware\Core\System\SalesChannel\Entity\SalesChannelRepositoryInterface;
+use Shopware\Core\System\SalesChannel\Entity\SalesChannelRepository;
 use Shopware\Storefront\Page\Checkout\Cart\CheckoutCartPageLoadedEvent;
 use Shopware\Storefront\Page\Checkout\Confirm\CheckoutConfirmPageLoadedEvent;
 use Shopware\Storefront\Page\Checkout\Finish\CheckoutFinishPageLoadedEvent;
@@ -30,15 +30,15 @@ class CheckoutCartPageSubscriber implements EventSubscriberInterface
      */
     protected $systemConfigService;
     /**
-     * @var EntityRepositoryInterface
+     * @var EntityRepository
      */
     private $salutationRepository;
     /**
-     * @var SalesChannelRepositoryInterface
+     * @var SalesChannelRepository
      */
     private $newsletterRecipientRepository;
     /**
-     * @var EntityRepositoryInterface
+     * @var EntityRepository
      */
     private $newsletterRepository;
     /**
@@ -48,9 +48,9 @@ class CheckoutCartPageSubscriber implements EventSubscriberInterface
 
     public function __construct(
         SystemConfigService $systemConfigService,
-        EntityRepositoryInterface $salutationRepository,
-        SalesChannelRepositoryInterface $newsletterRecipientRepository,
-        EntityRepositoryInterface $newsletterRepository,
+        EntityRepository $salutationRepository,
+        SalesChannelRepository $newsletterRecipientRepository,
+        EntityRepository $newsletterRepository,
         SessionInterface $session
     ) {
         $this->systemConfigService           = $systemConfigService;

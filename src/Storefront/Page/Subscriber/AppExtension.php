@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace ICTECHNewsletterDiscount\Storefront\Page\Subscriber;
 
 use Shopware\Core\Framework\Context;
-use Shopware\Core\Framework\DataAbstractionLayer\EntityRepositoryInterface;
+use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Filter\ContainsFilter;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Filter\EqualsFilter;
@@ -16,22 +16,22 @@ class AppExtension extends AbstractExtension
 {
 
     /**
-     * @var EntityRepositoryInterface
+     * @var EntityRepository
      */
     private $promotionDiscountRepository;
     /**
-     * @var EntityRepositoryInterface
+     * @var EntityRepository
      */
     private $currencyRepository;
     /**
-     * @var EntityRepositoryInterface
+     * @var EntityRepository
      */
     private $newsletterRecipientRepository;
 
     public function __construct(
-        EntityRepositoryInterface $promotionDiscountRepository,
-        EntityRepositoryInterface $currencyRepository,
-        EntityRepositoryInterface $newsletterRecipientRepository
+        EntityRepository $promotionDiscountRepository,
+        EntityRepository $currencyRepository,
+        EntityRepository $newsletterRecipientRepository
     ) {
         $this->promotionDiscountRepository = $promotionDiscountRepository;
         $this->currencyRepository          = $currencyRepository;
